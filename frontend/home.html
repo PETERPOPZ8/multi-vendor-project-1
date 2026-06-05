@@ -247,6 +247,7 @@ header{
     overflow:hidden;
     text-align:center;
     transition:0.3s;
+    position:relative;
 }
 
 .product-card:hover{
@@ -274,6 +275,40 @@ header{
 .product-info p{
     font-size:14px;
 }
+
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 16px;
+    color: #666;
+    transition: 0.3s;
+    z-index: 2;
+}
+.wishlist-btn:hover {
+    color: red;
+}
+.wishlist-btn.active i {
+    font-weight: 900;
+    color: red;
+}
+
+#toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(40px);
+    background: #333; color: #fff; padding: 12px 24px; border-radius: 8px;
+    opacity: 0; transition: all 0.3s; z-index: 1000; font-size: 14px;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* RESPONSIVE */
 @media(max-width:1000px){
@@ -474,7 +509,7 @@ header{
             <div class="product-card">
 
                 <img src="t shirt.jpg"alt="Tshirt">
-                    
+                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
                 <div class="product-info">
                     <h4>T - SHIRT</h4>
@@ -488,6 +523,7 @@ header{
 
                 <img src="perfume.jpg"
                     alt="Perfume">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
                 <div class="product-info">
                     <h4>PERFUME</h4>
@@ -502,6 +538,7 @@ header{
     <a href="vino.html">
         <img src="headset.jpg" alt="Headset">
     </a>
+    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
     <div class="product-info">
         <h4>HEADSET</h4>
@@ -514,6 +551,7 @@ header{
 
                 <img src="watch.jpeg"
                     alt="Smart Watch">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
                 <div class="product-info">
                     <h4>SMART WATCH</h4>
@@ -527,6 +565,7 @@ header{
 
                 <img src="bag.jpeg"
                     alt="Handbag">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
                 <div class="product-info">
                     <h4>HANDBAG FOR WOMEN</h4>
@@ -540,6 +579,7 @@ header{
 
                 <img src="shoes.jpeg"
                     alt="Shoes">
+                <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
 
                 <div class="product-info">
                     <h4>SHOES</h4>
@@ -554,6 +594,30 @@ header{
 
     <script src="js/product.js"></script>
     <script src="js/cart.js"></script>
+    <script>
+        function toggleWishlist(btn) {
+            btn.classList.toggle('active');
+            let icon = btn.querySelector('i');
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                document.body.appendChild(toast);
+            }
+            if (btn.classList.contains('active')) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+                toast.textContent = '❤️ Added to Wishlist!';
+            } else {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                toast.textContent = 'Removed from Wishlist';
+            }
+            toast.classList.add('show');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+    </script>
 </body>
 
 </html>
