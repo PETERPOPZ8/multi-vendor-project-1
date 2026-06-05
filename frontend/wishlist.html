@@ -463,9 +463,7 @@ header{
     <div class="breadcrumb">
         Home
         <i class="fa-solid fa-angle-right"></i>
-        Electronics
-        <i class="fa-solid fa-angle-right"></i>
-        Headphones
+        Your Wishlist
     </div>
 
     
@@ -503,91 +501,8 @@ header{
         </aside>
 
        
-        <div class="products">
-
-           
-            <div class="product-card" data-id="1">
-
-                <img src="t shirt.jpg"alt="Tshirt">
-                <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '1', name: 'T - SHIRT', price: '₹ 500', img: 't shirt.jpg'})"><i class="fa-regular fa-heart"></i></button>
-
-                <div class="product-info">
-                    <h4>T - SHIRT</h4>
-                    <p>₹ 500</p>
-                </div>
-
-            </div>
-
-            
-            <div class="product-card" data-id="2">
-
-                <img src="perfume.jpg"
-                    alt="Perfume">
-                <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '2', name: 'PERFUME', price: '₹ 999', img: 'perfume.jpg'})"><i class="fa-regular fa-heart"></i></button>
-
-                <div class="product-info">
-                    <h4>PERFUME</h4>
-                    <p>₹ 999</p>
-                </div>
-
-            </div>
-
-            
-           <div class="product-card" data-id="3">
-
-    <a href="vino.html">
-        <img src="headset.jpg" alt="Headset">
-    </a>
-    <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '3', name: 'HEADSET', price: '₹ 5999', img: 'headset.jpg'})"><i class="fa-regular fa-heart"></i></button>
-
-    <div class="product-info">
-        <h4>HEADSET</h4>
-        <p>₹ 5999</p>
-    </div>
-
-</div>
-
-            <div class="product-card" data-id="4">
-
-                <img src="watch.jpeg"
-                    alt="Smart Watch">
-                <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '4', name: 'SMART WATCH', price: '₹ 1299', img: 'watch.jpeg'})"><i class="fa-regular fa-heart"></i></button>
-
-                <div class="product-info">
-                    <h4>SMART WATCH</h4>
-                    <p>₹ 1299</p>
-                </div>
-
-            </div>
-
-           
-            <div class="product-card" data-id="5">
-
-                <img src="bag.jpeg"
-                    alt="Handbag">
-                <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '5', name: 'HANDBAG FOR WOMEN', price: '₹ 2199', img: 'bag.jpeg'})"><i class="fa-regular fa-heart"></i></button>
-
-                <div class="product-info">
-                    <h4>HANDBAG FOR WOMEN</h4>
-                    <p>₹ 2199</p>
-                </div>
-
-            </div>
-
-            
-            <div class="product-card" data-id="6">
-
-                <img src="shoes.jpeg"
-                    alt="Shoes">
-                <button class="wishlist-btn" onclick="toggleWishlist(this, {id: '6', name: 'SHOES', price: '₹ 2299', img: 'shoes.jpeg'})"><i class="fa-regular fa-heart"></i></button>
-
-                <div class="product-info">
-                    <h4>SHOES</h4>
-                    <p>₹ 2299</p>
-                </div>
-
-            </div>
-
+        <div class="products" id="wishlistContainer">
+            <!-- Wishlist items injected here by JS -->
         </div>
 
     </section>
@@ -595,11 +510,45 @@ header{
     <script src="js/product.js"></script>
     <script src="js/cart.js"></script>
     <script>
-        function toggleWishlist(btn, product) {
-            btn.classList.toggle('active');
-            let icon = btn.querySelector('i');
-            
+        function renderWishlist() {
+            let container = document.getElementById('wishlistContainer');
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = '<h3 style="grid-column: 1 / -1; color: #555;">Your wishlist is empty.</h3>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            wishlist.forEach(item => {
+                let card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('data-id', item.id);
+                
+                // Keep the exact same structure as home.html so toggleWishlist works easily
+                card.innerHTML = `
+                    <a href="${item.id === '3' ? 'vino.html' : '#'}">
+                        <img src="${item.img}" alt="${item.name}">
+                    </a>
+                    <button class="wishlist-btn active" onclick="removeFromWishlist(this, '${item.id}')">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <div class="product-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.price}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        function removeFromWishlist(btn, id) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => item.id !== id);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Re-render
+            renderWishlist();
             
             let toast = document.getElementById('toast');
             if (!toast) {
@@ -607,43 +556,14 @@ header{
                 toast.id = 'toast';
                 document.body.appendChild(toast);
             }
-            if (btn.classList.contains('active')) {
-                icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid');
-                toast.textContent = '❤️ Added to Wishlist!';
-                
-                // Add to localstorage
-                if(!wishlist.find(item => item.id === product.id)) {
-                    wishlist.push(product);
-                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                }
-            } else {
-                icon.classList.remove('fa-solid');
-                icon.classList.add('fa-regular');
-                toast.textContent = 'Removed from Wishlist';
-                
-                // Remove from localstorage
-                wishlist = wishlist.filter(item => item.id !== product.id);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            }
+            toast.textContent = 'Removed from Wishlist';
             toast.classList.add('show');
             clearTimeout(window._toastTimer);
             window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
         }
-        
-        // Auto mark already wishlisted items on load
-        document.addEventListener('DOMContentLoaded', () => {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            document.querySelectorAll('.product-card').forEach(card => {
-                let id = card.getAttribute('data-id');
-                if(wishlist.find(item => item.id === id)) {
-                    let btn = card.querySelector('.wishlist-btn');
-                    btn.classList.add('active');
-                    btn.querySelector('i').classList.remove('fa-regular');
-                    btn.querySelector('i').classList.add('fa-solid');
-                }
-            });
-        });
+
+        // Auto load on start
+        document.addEventListener('DOMContentLoaded', renderWishlist);
     </script>
 </body>
 
