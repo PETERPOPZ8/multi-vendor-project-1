@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+
+
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+    .wallet-page{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.wallet-page h2{
+    margin-bottom:25px;
+}
+
+.wallet-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.wallet-card{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+.wallet-card i{
+    font-size:30px;
+    color:#4f46e5;
+    margin-bottom:15px;
+}
+
+.wallet-card h3{
+    color:#6b7280;
+    margin-bottom:10px;
+}
+
+.wallet-card h2{
+    color:#111827;
+}
+
+.transaction-section{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.withdraw-btn{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.withdraw-btn:hover{
+    background:#4338ca;
+}
+body{
+    margin:0;
+    padding:0;
+    background:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.container{
+    display:flex;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0b1023;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.main-content{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    padding:30px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:15px;
+    background:#f3f4f6;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #e5e7eb;
+}
+.completed{
+    background:#dcfce7;
+    color:#166534;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+</style>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <!-- Copy your existing sidebar here -->
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="wallet-page">
+
+            <h2>Wallet & Earnings</h2>
+
+            <!-- Wallet Cards -->
+            <div class="wallet-cards">
+
+                <div class="wallet-card">
+                    <i class="fa-solid fa-wallet"></i>
+                    <h3>Total Earnings</h3>
+                    <h2>₹1,24,500</h2>
+                </div>
+
+                <div class="wallet-card">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h3>Available Balance</h3>
+                    <h2>₹75,000</h2>
+                </div>
+
+                <div class="wallet-card">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                    <h3>Pending Payout</h3>
+                    <h2>₹15,000</h2>
+                </div>
+
+            </div>
+
+            <!-- Transaction History -->
+            <div class="transaction-section">
+
+                <div class="section-header">
+                    <h3>Transaction History</h3>
+                    <button class="withdraw-btn">
+                        Withdraw Funds
+                    </button>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Transaction ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>01-06-2026</td>
+                            <td>TXN001</td>
+                            <td>₹2,500</td>
+                            <td>
+                                <span class="completed">Success</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>30-05-2026</td>
+                            <td>TXN002</td>
+                            <td>₹4,200</td>
+                            <td>
+                                <span class="completed">Success</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>28-05-2026</td>
+                            <td>TXN003</td>
+                            <td>₹1,500</td>
+                            <td>
+                                <span class="pending">Pending</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
+<script src="js/product.js"></script>

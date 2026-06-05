@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AcartZ - Payment</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* HEADER */
+
+.header{
+    background:#c9f2b8;
+    border-top:4px solid #3ba6ff;
+    padding:10px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:42px;
+    font-weight:bold;
+    font-style:italic;
+    cursor:pointer;
+}
+
+.orange{
+    color:#f08a28;
+}
+
+.blue{
+    color:#3f43db;
+}
+
+
+.progress{
+    display:flex;
+    align-items:center;
+}
+
+.step{
+    text-align:center;
+}
+
+.circle{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#cfcfcf;
+    color:#fff;
+    font-size:11px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+}
+
+.circle.active{
+    background:#1748ff;
+}
+
+.step p{
+    font-size:11px;
+    margin-top:4px;
+}
+
+.line{
+    width:95px;
+    height:2px;
+    background:#bdbdbd;
+    margin:0 8px;
+}
+
+/* MAIN */
+
+.container{
+    background:#dbe5f1;
+    margin:10px;
+    border-radius:5px;
+    padding:15px;
+}
+
+.summary{
+    display:flex;
+    justify-content:space-between;
+}
+
+.summary h4{
+    margin-bottom:10px;
+}
+
+.summary p{
+    color:#555;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.right{
+    text-align:right;
+    font-size:12px;
+}
+
+.view-cart{
+    color:#4f46e5;
+    font-size:11px;
+    text-decoration:none;
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* COUPON */
+
+.coupon-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:15px;
+}
+
+.coupon-row label{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.coupon-row input{
+    flex:1;
+    height:40px;
+    border:none;
+    border-radius:5px;
+    padding-left:15px;
+    font-size:14px;
+}
+
+.coupon-row button{
+    background:#4f5dff;
+    color:#fff;
+    border:none;
+    width:90px;
+    height:40px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* PAYMENT SECTION */
+
+.payment{
+    margin-top:15px;
+    background:#e9eef5;
+    padding:10px;
+    border-radius:5px;
+}
+
+.payment-title{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.payment-option{
+    background:#fff;
+    border-radius:5px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+    margin-bottom:10px;
+    border:2px solid transparent;
+    cursor:pointer;
+}
+
+.payment-option.active{
+    border-color:#2f54ff;
+}
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.left input{
+    width:18px;
+    height:18px;
+}
+
+.method{
+    font-size:13px;
+}
+
+.icons{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-size:14px;
+}
+
+.gpay{
+    color:#4285F4;
+    font-weight:bold;
+}
+
+.paytm{
+    color:#00baf2;
+    font-weight:bold;
+}
+
+.phonepe{
+    color:#5f259f;
+    font-weight:bold;
+}
+
+.visa{
+    color:#1434cb;
+    font-weight:bold;
+}
+
+.master{
+    color:#eb001b;
+    font-weight:bold;
+}
+
+.rupay{
+    color:#0038a8;
+    font-weight:bold;
+}
+
+/* BUTTON */
+
+.pay-btn{
+    width:100%;
+    height:45px;
+    border:none;
+    border-radius:4px;
+    background:#3f3dff;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.pay-btn i{
+    margin-right:8px;
+}
+
+.note{
+    text-align:center;
+    margin-top:10px;
+    color:#666;
+    font-size:13px;
+}
+
+/* FOOTER */
+
+.footer{
+    background:#fff;
+    padding:20px;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+}
+
+.feature{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.feature i{
+    font-size:22px;
+}
+
+.green{color:#22c55e;}
+.pink{color:#d946ef;}
+.blue{color:#2563eb;}
+.orange{color:#fb923c;}
+
+.feature h5{
+    font-size:12px;
+}
+
+.feature p{
+    font-size:11px;
+    color:#666;
+}
+
+@media(max-width:768px){
+
+.header{
+    flex-direction:column;
+    gap:15px;
+}
+
+.summary{
+    flex-direction:column;
+}
+
+.coupon-row{
+    flex-direction:column;
+}
+
+.coupon-row button{
+    width:100%;
+}
+
+.footer{
+    gap:15px;
+    justify-content:center;
+}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+
+<div class="logo">
+            <p class="blue"><span class="orange">A</span>cart<span class="orange">Z</span></p>
+        
+        </div>
+
+<div class="progress">
+
+<div class="step">
+<div class="circle">1</div>
+<p>Cart</p>
+</div>
+
+<div class="line"></div>
+
+<div class="step">
+<div class="circle active">2</div>
+<p><b>Checkout</b></p>
+</div>
+
+<div class="line"></div>
+
+<div class="step">
+<div class="circle active">3</div>
+<p><b>Payment</b></p>
+</div>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="summary">
+
+<div>
+<h4>Order Summary</h4>
+<p>Items Total</p>
+<p>Shipping</p>
+<p>Platform Fee</p>
+
+<br>
+
+<h4>Total Amount</h4>
+</div>
+
+<div class="right">
+
+<a href="#" class="view-cart">View or Edit Cart</a>
+
+<p id="itemsTotal">₹2,397.00</p>
+<p id="shippingAmount">FREE</p>
+<p id="platformFee">₹49.00</p>
+
+<div class="total" id="totalAmount">₹2,446.00</div>
+
+</div>
+
+</div>
+
+<div class="coupon-row">
+
+<label>Have a Coupon?</label>
+
+<input type="text" placeholder="Enter coupon code">
+
+<button>Apply</button>
+
+</div>
+
+<div class="payment">
+
+<div class="payment-title">
+3. Payment Methods
+</div>
+
+<div class="payment-option active">
+<div class="left">
+<input type="radio" name="payment" checked>
+<span class="method">UPI</span>
+</div>
+
+<div class="icons">
+<span class="gpay">G Pay</span>
+<span class="phonepe">PhonePe</span>
+<span class="paytm">Paytm</span>
+</div>
+</div>
+
+<div class="payment-option">
+<div class="left">
+<input type="radio" name="payment">
+<span class="method">Credit / Debit Card</span>
+</div>
+
+<div class="icons">
+<span class="visa">VISA</span>
+<span class="master">MasterCard</span>
+<span class="rupay">RuPay</span>
+</div>
+</div>
+
+<div class="payment-option">
+<div class="left">
+<input type="radio" name="payment">
+<span class="method">Net Banking</span>
+</div>
+
+<div class="icons">
+<i class="fa-solid fa-building-columns"></i>
+</div>
+</div>
+
+<div class="payment-option">
+<div class="left">
+<input type="radio" name="payment">
+<span class="method">Cash on Delivery</span>
+</div>
+
+<div>₹49.00</div>
+</div>
+
+<button class="pay-btn">
+<i class="fa-solid fa-lock"></i>
+Continue to payment
+</button>
+
+<div class="note">
+You will be redirected to a secure payment page
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+<div class="feature">
+<i class="fa-solid fa-lock green"></i>
+<div>
+<h5>Secure Payments</h5>
+<p>100% secure & encrypted payments</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-lightbulb pink"></i>
+<div>
+<h5>Easy Returns</h5>
+<p>Hassle-free returns within 7 days</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-shield blue"></i>
+<div>
+<h5>Buyer Protection</h5>
+<p>Get full refund for damaged items</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-headset orange"></i>
+<div>
+<h5>Support</h5>
+<p>24/7 customer support</p>
+</div>
+</div>
+
+</footer>
+
+<script>
+const paymentOptions =
+document.querySelectorAll('.payment-option');
+
+paymentOptions.forEach(option => {
+
+option.addEventListener('click', () => {
+
+paymentOptions.forEach(item => {
+item.classList.remove('active');
+item.querySelector('input').checked = false;
+});
+
+option.classList.add('active');
+option.querySelector('input').checked = true;
+
+});
+
+});
+
+const itemsTotal = 2397;
+const platformFee = 49;
+const shippingFee = Number(localStorage.getItem('shippingFee') || '0');
+const shippingAmountEl = document.getElementById('shippingAmount');
+const totalAmountEl = document.getElementById('totalAmount');
+const total = itemsTotal + platformFee + shippingFee;
+
+if (shippingAmountEl) {
+  shippingAmountEl.innerText = shippingFee === 0 ? 'FREE' : `₹${shippingFee.toFixed(2)}`;
+}
+if (totalAmountEl) {
+  totalAmountEl.innerText = `₹${total.toFixed(2)}`;
+}
+
+document.querySelector('.pay-btn')
+.addEventListener('click', () => {
+
+const selected =
+document.querySelector(
+'input[name="payment"]:checked'
+);
+
+const method =
+selected.closest('.left')
+.querySelector('.method')
+.innerText;
+
+alert(
+'Selected Payment Method: ' + method
+);
+
+});
+</script>
+
+</body>
+</html>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>

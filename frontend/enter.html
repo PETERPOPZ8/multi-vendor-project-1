@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcartZ E-Commerce</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#dfe5df;
+}
+
+header{
+    width:100%;
+    background:white;
+    padding:15px 30px;
+}
+
+.top-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    font-size:42px;
+    font-weight:bold;
+    font-style:italic;
+    cursor:pointer;
+}
+
+.orange{
+    color:#f08a28;
+}
+
+.blue{
+    color:#3f43db;
+}
+
+.search-box{
+    width:520px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    border-radius:30px;
+    overflow:hidden;
+    border:1px solid #d6d6d6;
+    background:#f3f3f3;
+    margin-left:auto;
+}
+
+.search-box input{
+    flex:1;
+    height:100%;
+    border:none;
+    outline:none;
+    padding:0 18px;
+    background:transparent;
+    font-size:15px;
+}
+
+.search-box select{
+    border:none;
+    outline:none;
+    background:#f4a15b;
+    padding:12px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.search-box button{
+    width:55px;
+    height:100%;
+    border:none;
+    background:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.search-box button:hover{
+    background:#f0f0f0;
+}
+
+.header-icons{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.icon-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.icon-box:hover{
+    transform:translateY(-2px);
+}
+
+.icon-box i{
+    font-size:22px;
+    margin-bottom:5px;
+    color:#222;
+}
+
+.icon-box span{
+    font-size:13px;
+    color:#333;
+}
+
+.account{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+}
+
+.account i{
+    font-size:22px;
+    color:#222;
+}
+
+.account small{
+    color:#777;
+    font-size:12px;
+}
+
+.account h4{
+    font-size:15px;
+    color:#111;
+}
+
+nav{
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+    border-top:1px solid #ddd;
+    padding-top:15px;
+}
+
+.category-btn{
+    background:#39db16;
+    color:black;
+    border:none;
+    padding:12px 18px;
+    font-weight:bold;
+    border-radius:4px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.category-btn:hover{
+    background:#2dc40d;
+}
+
+nav ul{
+    display:flex;
+    align-items:center;
+    list-style:none;
+    gap:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#333;
+    font-size:15px;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#f08a28;
+}
+
+.hero{
+    width:92%;
+    height:430px;
+    margin:20px auto;
+    position:relative;
+
+    background-image:
+    linear-gradient(rgba(0,0,0,0.3),
+    rgba(0,0,0,0.3)),
+    url('electronics.jpeg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+
+    border-radius:5px;
+    overflow:hidden;
+
+    transition:1s ease-in-out;
+}
+
+.hero-content{
+    margin-left:40px;
+    color:white;
+    z-index:2;
+}
+
+.hero-content h1{
+    font-size:65px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.hero-content h2{
+    font-size:45px;
+    font-weight:700;
+}
+
+.hero-content span{
+    color:#f08a28;
+}
+
+.slide-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:50%;
+
+    background:white;
+    color:black;
+
+    font-size:20px;
+    cursor:pointer;
+
+    z-index:2;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:0.3s;
+}
+
+.left{
+    left:20px;
+}
+
+.right{
+    right:20px;
+}
+
+.slide-btn:hover{
+    background:#f08a28;
+    color:white;
+}
+.left{
+    left:15px;
+}
+
+.right{
+    right:15px;
+}
+
+
+.categories{
+    width:92%;
+    margin:25px auto;
+}
+
+.categories h3{
+    font-size:22px;
+    margin-bottom:20px;
+    color:#333;
+}
+
+
+.category-container{
+    display:flex;
+    justify-content:space-between;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+
+
+.category-card{
+    width:230px;
+    background:#9d9d9d;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+}
+
+
+
+.category-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border:5px solid #3f7fff;
+    background:white;
+}
+
+
+
+.category-card p{
+    margin-top:12px;
+    font-size:18px;
+    color:#333;
+    font-weight:500;
+}
+
+
+
+@media(max-width:1100px){
+
+    .top-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .search-box{
+        width:100%;
+        margin-left:0;
+    }
+
+    .header-icons{
+        width:100%;
+        justify-content:center;
+    }
+
+    nav{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        gap:20px;
+    }
+
+    .hero-content h1{
+        font-size:45px;
+    }
+
+    .hero-content h2{
+        font-size:35px;
+    }
+
+    .category-container{
+        justify-content:center;
+    }
+}
+
+@media(max-width:768px){
+
+    header{
+        padding:15px;
+    }
+
+    .logo{
+        font-size:34px;
+    }
+
+    .hero{
+        height:300px;
+    }
+
+    .hero-content{
+        margin-left:20px;
+    }
+
+    .hero-content h1{
+        font-size:35px;
+    }
+
+    .hero-content h2{
+        font-size:28px;
+    }
+
+    .header-icons{
+        gap:15px;
+        flex-wrap:wrap;
+    }
+
+    .category-card{
+        width:100%;
+    }
+
+    nav ul{
+        gap:15px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="top-header">
+
+           <div class="logo">
+            <p class="blue"><span class="orange">A</span>cart<span class="orange">Z</span></p>
+        
+        </div>
+            <div class="search-box">
+
+                <input type="text"
+                    placeholder="Search for products and more...">
+
+                <select>
+                    <option>All Categories</option>
+                    <option>Fashion</option>
+                    <option>Electronics</option>
+                    <option>Accessories</option>
+                    <option>Footwear</option>
+                </select>
+
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+
+            
+            <div class="header-icons">
+
+                
+                <div class="icon-box">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Order</span>
+                </div>
+
+                
+                <div class="icon-box">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Wishlist</span>
+                </div>
+
+                
+                <div class="icon-box">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Cart</span>
+                </div>
+
+                
+                <div class="account">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <div>
+                        <small>Sign in</small>
+                      <h4> <a href="coupon.html">My account</a></h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button class="category-btn">
+                All Categories
+                <i class="fa-solid fa-angle-down"></i>
+            </button>
+
+            <ul>
+
+                <li><a href="home.html">Products</a></li>
+
+                <li><a href="filter.html">Filter</a></li>
+
+                <li><a href="coupon.html">coupon</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <section class="hero" id="hero">
+
+    
+    <button class="slide-btn left" onclick="prevSlide()">
+        <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+   
+    <div class="hero-content">
+        <h1>Upgrade Your</h1>
+        <h2>Style with <div class="logo"><p class="blue"><span class="orange">A</span>cart<span class="orange">Z</span></p>
+        </div></h2>
+    </div>
+    <button class="slide-btn right" onclick="nextSlide()">
+        <i class="fa-solid fa-angle-right"></i>
+    </button>
+
+</section>
+
+    <section class="categories">
+
+        <h3>Shop by Categories</h3>
+
+        <div class="category-container">
+
+            <div class="category-card">
+
+                <img src="./watch.jpeg"
+                    alt="Accessories">
+
+                <p>Accessories</p>
+
+            </div>
+
+            <div class="category-card">
+
+                <img src="./shoes.jpeg"
+                    alt="Footwear">
+
+                <p>Footwears</p>
+
+            </div>
+
+            <div class="category-card">
+
+                <img src="./bag.jpeg"
+                    alt="Women Handbags">
+
+                <p>Women Handbags</p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <img src="./electronics.jpeg"
+                    alt="Electronics">
+
+                <p>Electronics</p>
+
+            </div>
+
+        </div>
+
+    </section>
+<script>
+
+    const hero = document.getElementById("hero");
+
+    const images = [
+        "electronics.jpeg",
+        "bag.jpeg",
+        "shoes.jpeg",
+        "watch.jpeg"
+    ];
+
+    let current = 0;
+
+    function showSlide(index){
+
+        hero.style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3)),
+        url('${images[index]}')`;
+    }
+
+    function nextSlide(){
+
+        current++;
+
+        if(current >= images.length){
+            current = 0;
+        }
+
+        showSlide(current);
+    }
+
+    function prevSlide(){
+
+        current--;
+
+        if(current < 0){
+            current = images.length - 1;
+        }
+
+        showSlide(current);
+    }
+
+</script>
+    <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>

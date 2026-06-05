@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Vendor Coupon Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+          <style>
+            *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* BODY */
+body{
+    display:flex;
+    background:#f4f6f9;
+    color:#333;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0b1023;
+    color:black;
+    position:fixed;
+    left:0;
+    top:0;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:50px;
+    font-weight:bold;
+    margin-bottom:20px;
+    color:#0066ff;
+    font-style:italic;
+}
+
+.orange{
+    color:orange;
+}
+
+.card{
+    width:650px;
+    margin:auto;
+    background:rgba(255,255,255,0.2);
+    border-radius:15px;
+    padding:40px;
+    background-image:url('background.png');
+    background-position:center;
+}
+
+.sidebar nav ul{
+    list-style:none;
+}
+
+.sidebar nav ul li{
+    margin:8px 0;
+}
+
+.sidebar nav ul li a{
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:12px 15px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.sidebar nav ul li a:hover{
+    background:#f59e0b;
+    color:#000;
+}
+
+.submenu{
+    margin-left:20px;
+    margin-top:5px;
+}
+
+.submenu li a{
+    font-size:14px;
+    color:#cbd5e1;
+}
+
+/* MAIN CONTENT */
+.main-content{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:25px;
+}
+
+/* TOPBAR */
+.topbar{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom:25px;
+}
+
+.topbar input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+/* SECTION TITLE */
+.section h2{
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+/* FORM BOX */
+.form-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+}
+
+.form-box h3{
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+.form-box label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+/* INPUTS */
+.form-box input[type="text"],
+.form-box input[type="number"],
+.form-box input[type="date"],
+.form-box select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+/* GENERATE COUPON */
+.coupon-generate{
+    display:flex;
+    gap:10px;
+}
+
+.coupon-generate input{
+    flex:1;
+}
+
+.coupon-generate button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.coupon-generate button:hover{
+    background:#1d4ed8;
+}
+
+/* RADIO & CHECKBOX */
+input[type="radio"],
+input[type="checkbox"]{
+    margin-right:8px;
+    margin-bottom:10px;
+}
+
+/* BUTTONS */
+.reset{
+    background:#e2e8f0;
+    color:#000;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.reset:hover{
+    background:#cbd5e1;
+}
+
+.create{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:10px;
+}
+
+.create:hover{
+    background:#15803d;
+}
+
+/* TABLE SECTION */
+.table-section{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.table-section h3{
+    margin-bottom:15px;
+}
+
+/* TABLE BUTTONS */
+.vendor,
+.coupon{
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.vendor{
+    background:#e2e8f0;
+}
+
+.coupon{
+    background:#2563eb;
+    color:white;
+    margin-left:10px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table th{
+    background:#0f172a;
+    color:white;
+    padding:14px;
+    text-align:left;
+}
+
+table td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+table tr:nth-child(even){
+    background:#f8fafc;
+}
+
+table tr:hover{
+    background:#f1f5f9;
+}
+
+/* STATUS */
+.active-status{
+    color:green;
+    font-weight:bold;
+}
+
+.inactive-status{
+    color:red;
+    font-weight:bold;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main-content{
+        margin-left:0;
+        width:100%;
+    }
+
+    .coupon-generate{
+        flex-direction:column;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+}
+          </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="logo">
+            <p class="blue"><span class="orange">A</span>cart<span class="orange">Z</span></p>
+        
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="order.html">Orders</a></li>
+
+                <li class="menu-title">
+                    
+                    
+                        <li><a href="#">Coupons</a></li>
+                        <li><a href="#">Vendor Offers</a></li>
+                    
+                </li>
+
+                <li><a href="#">Notifications</a></li>
+                <li><a href="settings.html">Address</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <input type="text"
+                   placeholder="Search orders, vendors and coupons">
+        </div>
+
+        <!-- Coupon Form -->
+        <div class="section">
+
+            <h2>Vendor Specific Offers Management</h2>
+
+            <form class="form-box"
+                  action="/create_coupon"
+                  method="POST">
+
+                <h3>Generate New Coupon</h3>
+
+                <!-- Coupon Code -->
+                <label>Coupon Code</label><br>
+
+                <div class="coupon-generate">
+
+                    <input type="text"
+                           id="couponCode"
+                           name="coupon_code"
+                           placeholder="eg. TECH20"
+                           required>
+
+                    <button type="button"
+                            onclick="generateCoupon()">
+                        Generate
+                    </button>
+
+                </div>
+
+                <br>
+
+                <!-- Target Vendor -->
+                <label>Target Vendor</label><br>
+
+                <select name="vendor" required>
+                    <option value="">Select a Vendor</option>
+                    <option>Organic Mart</option>
+                    <option>Fashion Store</option>
+                    <option>Electro Deals</option>
+                </select>
+
+                <br><br>
+
+                <!-- Discount Type -->
+                <label>Discount Type</label><br>
+
+                <select name="discount_type">
+                    <option>Percentage</option>
+                    <option>Flat</option>
+                </select>
+
+                <br><br>
+
+                <!-- Discount Value -->
+                <label>Discount Value</label><br>
+
+                <input type="number"
+                       name="discount_value"
+                       placeholder="20"
+                       required>
+
+                <br><br>
+
+                <!-- Minimum Order -->
+                <label>Minimum Order Amount</label><br>
+
+                <input type="text"
+                       name="min_order"
+                       placeholder="₹100">
+
+                <br><br>
+
+                <!-- Maximum Discount -->
+                <label>Maximum Discount Amount</label><br>
+
+                <input type="text"
+                       name="max_discount"
+                       placeholder="₹1000">
+
+                <br><br>
+
+                <!-- Usage Limit -->
+                <label>Usage Limit</label><br>
+
+                <input type="number"
+                       name="usage_limit"
+                       placeholder="100">
+
+                <br><br>
+
+                <!-- Start Date -->
+                <label>Start Date</label><br>
+
+                <input type="date"
+                       name="start_date">
+
+                <br><br>
+
+                <!-- End Date -->
+                <label>End Date</label><br>
+
+                <input type="date"
+                       name="end_date">
+
+                <br><br>
+
+                <!-- Apply To -->
+                <label>Apply To</label><br>
+
+                <input type="radio"
+                       name="apply_to"
+                       value="All Products">
+                All Products <br>
+
+                <input type="radio"
+                       name="apply_to"
+                       value="Specific Categories">
+                Specific Categories <br>
+
+                <input type="radio"
+                       name="apply_to"
+                       value="Specific Products">
+                Specific Products
+
+                <br><br>
+
+                <!-- Coupon Access -->
+                <label>Coupon Access</label><br>
+
+                <input type="checkbox"
+                       name="coupon_access"
+                       value="Public">
+                Public Coupon <br>
+
+                <input type="checkbox"
+                       name="coupon_access"
+                       value="Vendor Exclusive">
+                Vendor Exclusive <br>
+
+                <input type="checkbox"
+                       name="coupon_access"
+                       value="New Customers">
+                New Customers Only <br>
+
+                <input type="checkbox"
+                       name="coupon_access"
+                       value="Premium Members">
+                Premium Members <br>
+
+                <br><br>
+
+                <!-- Buttons -->
+                <button type="reset"
+                        class="reset">
+                    Reset
+                </button>
+
+                <button type="submit"
+                        class="create">
+                    Create Coupon
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Vendor Offers Table -->
+        <div class="table-section">
+
+            <h3>Vendor Offers</h3>
+
+            <button class="vendor">
+                All Vendors
+            </button>
+
+            <button class="coupon">
+                + New Coupon
+            </button>
+
+            <br><br>
+
+            <table>
+
+                <tr>
+                    <th>Code</th>
+                    <th>Vendor</th>
+                    <th>Discount</th>
+                    <th>Minimum Order</th>
+                    <th>Max Discount</th>
+                    <th>Usage Limit</th>
+                    <th>End Date</th>
+                </tr>
+
+                {% for coupon in coupons %}
+                <tr>
+
+                    <td>{{ coupon[1] }}</td>
+
+                    <td>{{ coupon[2] }}</td>
+
+                    <td>
+                        {{ coupon[4] }}
+                        {% if coupon[3] == "Percentage" %}
+                            %
+                        {% else %}
+                            ₹
+                        {% endif %}
+                    </td>
+
+                    <td>{{ coupon[5] }}</td>
+
+                    <td>{{ coupon[6] }}</td>
+
+                    <td>{{ coupon[7] }}</td>
+
+                    <td>{{ coupon[9] }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>  
+function generateCoupon() {
+
+    let chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    let coupon = "";
+
+    for(let i = 0; i < 8; i++) {
+
+        coupon += chars.charAt(
+            Math.floor(Math.random() * chars.length)
+        );
+    }
+
+    document.getElementById(
+        "couponCode"
+    ).value = coupon;
+}
+</script>
+</body>
+</html>
+<script src="js/product.js"></script>

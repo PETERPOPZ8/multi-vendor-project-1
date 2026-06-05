@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+
+
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+    /* REVIEWS PAGE */
+
+    .reviews-page{
+        padding:30px;
+        max-width:1200px;
+        margin:auto;
+    }
+
+    .reviews-header{
+        margin-bottom:20px;
+    }
+
+    .reviews-container{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+        gap:20px;
+    }
+
+    .review-card{
+        background:white;
+        padding:20px;
+        border-radius:16px;
+        box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .review-top{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:10px;
+    }
+
+    .rating{
+        color:#f59e0b;
+    }
+    body{
+    margin:0;
+    background:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display:flex;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0b1023;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.main-content{
+    margin-left:250px;
+    width:calc(100% - 250px);
+}
+.review-card p{
+    color:#555;
+    line-height:1.6;
+    margin-top:10px;
+}
+.review-card{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.review-card:hover{
+    transform:translateY(-5px);
+}
+</style>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <!-- Copy your existing sidebar here -->
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="reviews-page">
+
+            <div class="reviews-header">
+                <h2>Customer Reviews</h2>
+            </div>
+
+            <div class="reviews-container">
+
+                <div class="review-card">
+
+                    <div class="review-top">
+                        <h3>Rohith</h3>
+                        <span class="rating">★★★★★</span>
+                    </div>
+
+                    <p>
+                        Excellent product quality. Fast delivery and good packaging.
+                    </p>
+
+                </div>
+
+                <div class="review-card">
+
+                    <div class="review-top">
+                        <h3>Arun</h3>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+
+                    <p>
+                        Product is good but delivery took longer than expected.
+                    </p>
+
+                </div>
+
+                <div class="review-card">
+
+                    <div class="review-top">
+                        <h3>Karthik</h3>
+                        <span class="rating">★★★★★</span>
+                    </div>
+
+                    <p>
+                        Very satisfied with the purchase. Highly recommended.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
+<script src="js/product.js"></script>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filters</title>
+
+    <link rel="stylesheet" href="s.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#e7efea;
+}
+
+.logo{
+    font-size:50px;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    display:flex;
+    align-items:center;
+}
+
+.logo-a{
+    color:#f7931e;
+}
+
+.logo-cart{
+    color:#304ffe;
+}
+
+.logo-z{
+    color:#f7931e;
+}
+
+.top-filter{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    border-bottom:1px solid #bdbdbd;
+}
+
+.filter-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.filter-title a{
+    color:#1db93f;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.filter-title i{
+    color:#999;
+}
+
+.colors{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.color{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.red{background:red;}
+.navy{background:#08138e;}
+.teal{background:#0b7182;}
+.purple{background:purple;}
+.green{background:green;}
+.violet{background:#b36cb7;}
+.gold{background:#bda400;}
+.orange{background:#df7500;}
+
+.container{
+    display:flex;
+    gap:20px;
+    padding:10px;
+}
+
+
+.card{
+    background:#d2d2d2;
+    width:32%;
+    padding:16px;
+    border-radius:22px;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+/* SEARCH */
+
+.search-box{
+    background:white;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    padding:12px;
+    margin-bottom:18px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    width:100%;
+    margin-left:10px;
+}
+
+/* OPTIONS */
+
+.option{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+    font-size:16px;
+}
+
+.checkbox{
+    width:26px;
+    height:26px;
+    border-radius:5px;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#555;
+}
+
+/* PRICE */
+
+.price-range{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.price-box{
+    background:white;
+    padding:10px 15px;
+    border-radius:8px;
+    width:40%;
+}
+
+.band-title{
+    margin-bottom:10px;
+}
+
+/* VIEW MORE */
+
+.view-more{
+    color:#16b23d;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.view-more i{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#444;
+}
+
+/* RATINGS */
+
+.rating-box{
+    background:white;
+    padding:14px;
+    border-radius:8px;
+    margin-bottom:16px;
+    color:#666;
+    font-size:18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .card{
+        width:100%;
+    }
+
+    .top-filter{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .colors{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <span class="logo-a">A</span><span class="logo-cart">cart</span><span class="logo-z">Z</span>
+</div>
+
+<div class="top-filter">
+
+    <div class="filter-title">
+        <h2>Filters</h2>
+
+        <a href="#">Clear All</a>
+
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+
+    <div class="colors">
+
+        <span>Colour</span>
+
+        <div class="color red"></div>
+        <div class="color navy"></div>
+        <div class="color teal"></div>
+        <div class="color purple"></div>
+        <div class="color green"></div>
+        <div class="color violet"></div>
+        <div class="color gold"></div>
+        <div class="color orange"></div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    
+    <div class="card">
+
+        <h3>Categories</h3>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search categories">
+        </div>
+
+        <div class="option checked">
+            <div class="checkbox"><i class="fa-solid fa-check"></i></div>
+            Electronics
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Mobiles & Tablets
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Laptops & Accessories
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Audio
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Cameras
+        </div>
+
+        <div class="view-more">
+            <i class="fa-solid fa-plus"></i>
+            View More
+        </div>
+
+    </div>
+
+    
+    <div class="card">
+
+        <h3>Price Range</h3>
+
+        <div class="price-range">
+
+            <div class="price-box">
+                ₹ Low
+            </div>
+
+            <div class="price-box">
+                ₹ High
+            </div>
+
+        </div>
+
+        <h3 class="band-title">Band</h3>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Bands">
+        </div>
+
+        <div class="option checked">
+            <div class="checkbox"><i class="fa-solid fa-check"></i></div>
+            Apple
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Sony
+        </div>
+
+        <div class="option">
+            <div class="checkbox"></div>
+            Samsung
+        </div>
+
+        <div class="view-more">
+            <i class="fa-solid fa-plus"></i>
+            View More
+        </div>
+
+    </div>
+
+    
+    <div class="card">
+
+        <h3>Customer Rating</h3>
+
+        <div class="rating-box">
+            ☆ ☆ ⭐ ⭐ ⭐ &nbsp; & above
+        </div>
+
+        <div class="rating-box">
+            ⭐ ⭐ ⭐ ⭐ ⭐ &nbsp; & above
+        </div>
+
+        <div class="rating-box">
+            ☆ ☆ ☆ ⭐ ⭐ &nbsp; & above
+        </div>
+
+        <div class="rating-box">
+            ☆ ⭐ ⭐ ⭐ ⭐ &nbsp; & above
+        </div>
+
+        <div class="rating-box">
+            ☆ ☆ ☆ ☆ ⭐ &nbsp; & above
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+<script src="js/product.js"></script>
+<script src="js/cart.js"></script>
